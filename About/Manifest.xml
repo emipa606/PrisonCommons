@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Manifest>
+  <identifier>PrisonCommons</identifier>
+  <version>1.4.0</version>
+  <dependencies />
+  <incompatibleWith />
+  <loadBefore />
+  <loadAfter />
+  <manifestUri>https://raw.githubusercontent.com/emipa606/PrisonCommons/master/About/Manifest.xml</manifestUri>
+  <downloadUri>https://github.com/emipa606/PrisonCommons/releases</downloadUri>
+</Manifest>

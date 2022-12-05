@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <CommandPrisonCommonsToggleLabel>Prison Commons</CommandPrisonCommonsToggleLabel>
+  <CommandPrisonCommonsToggleDescActive>Prisoners can freely enter this room if it shares a door with their cell or another prison commons they can access.</CommandPrisonCommonsToggleDescActive>
+  <CommandPrisonCommonsToggleDescInactive>This is a normal gather spot.</CommandPrisonCommonsToggleDescInactive>
+</LanguageData>

@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Patch>
+  <Operation Class="PatchOperationReplace">
+    <xpath>/Defs/ThingDef/comps/li[compClass="CompGatherSpot"]</xpath>
+    <value>
+      <li>
+        <compClass>CompGatherSpot</compClass>
+      </li>
+      <li>
+        <compClass>CompPrisonCommons</compClass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <success>Always</success>
+    <xpath>/Defs/ThingDef[defName="PartySpot"][not(comps)]</xpath>
+    <value>
+      <comps />
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[defName="PartySpot"]/comps</xpath>
+    <value>
+      <li>
+        <compClass>CompPrisonCommons</compClass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationAdd">
+    <xpath>/Defs/ThingDef[@Name="SculptureBase"]/comps</xpath>
+    <value>
+      <li>
+        <compClass>CompPrisonCommons</compClass>
+      </li>
+    </value>
+  </Operation>
+  <Operation Class="PatchOperationFindMod">
+    <mods>
+      <li>Dubs Bad Hygiene</li>
+      <li>Dubs Bad Hygiene Lite</li>
+    </mods>
+    <match Class="PatchOperationAdd">
+      <xpath>/Defs/ThingDef[@Name="BasedFixture"]/comps</xpath>
+      <value>
+        <li>
+          <compClass>CompPrisonCommons</compClass>
+        </li>
+      </value>
+    </match>
+  </Operation>
+</Patch>
