@@ -59,7 +59,7 @@ internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
             if (sb != null && doorFactor > 1f)
             {
                 sb.AppendLineIfNotEmpty();
-                sb.Append("FactorForDoorCount".Translate() + ": " + doorFactor.ToStringPercent());
+                sb.Append("FactorForDoorCount".Translate() + ": " + (1f / doorFactor).ToStringPercent());
             }
         }
 

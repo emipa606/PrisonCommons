@@ -1,5 +1,8 @@
 # Changelog for PrisonCommons
 
+1.4.1 - Fixed the typo in the multiplier for doors
+
+
 1.4.0 - First publish.
 Used DeepL to update translations for ChineseSimplified, French, German, Russian
 

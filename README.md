@@ -10,7 +10,6 @@ https://steamcommunity.com/sharedfiles/filedetails/?id=2630896782
 	
 ![Image](https://i.imgur.com/Z4GOv8H.png)
 
-**Looking for a version of this mod for 1.4? Check out https://steamcommunity.com/sharedfiles/filedetails/?id=2882734405]Owlchemist's continuation.**
 
 Allows you to mark any enclosed Gather Spot (table, sculpture, campfire, etc) as a prison commons area.
 
@@ -30,3 +29,4 @@ Having trouble with prison breaks due to door count? https://imgur.com/a/Is44BA5
 -  If you have the solution for a problem, please post it to the GitHub repository.
 
 
+https://steamcommunity.com/sharedfiles/filedetails/changelog/2898000489]Last updated 2023-04-23
