@@ -9,10 +9,10 @@ namespace PrisonCommons;
 [StaticConstructorOnStartup]
 public static class PrisonCommons
 {
-    private static readonly HashSet<CompPrisonCommons> comps = new HashSet<CompPrisonCommons>();
+    private static readonly HashSet<CompPrisonCommons> comps = [];
 
-    private static readonly HashSet<Room> matchingRooms = new HashSet<Room>();
-    private static readonly HashSet<Room> seenDoors = new HashSet<Room>();
+    private static readonly HashSet<Room> matchingRooms = [];
+    private static readonly HashSet<Room> seenDoors = [];
     private static readonly Queue<Room> doorQueue = new Queue<Room>();
 
     static PrisonCommons()

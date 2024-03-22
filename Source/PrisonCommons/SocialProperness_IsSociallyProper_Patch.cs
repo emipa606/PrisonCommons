@@ -8,7 +8,7 @@ namespace PrisonCommons;
     typeof(bool), typeof(bool))]
 internal static class SocialProperness_IsSociallyProper_Patch
 {
-    public static void Postfix(ref bool __result, Thing t, Pawn p, bool forPrisoner, bool animalsCare)
+    public static void Postfix(ref bool __result, Thing t, Pawn p, bool forPrisoner)
     {
         if (__result || !forPrisoner || p == null)
         {

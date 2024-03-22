@@ -10,13 +10,14 @@ namespace PrisonCommons;
 [HarmonyPatch(typeof(PrisonBreakUtility), nameof(PrisonBreakUtility.InitiatePrisonBreakMtbDays))]
 internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
 {
-    private static readonly float BaseInitiatePrisonBreakMtbDays =
-        (float)AccessTools.Field(typeof(PrisonBreakUtility), "BaseInitiatePrisonBreakMtbDays").GetValue(null);
+    //private static readonly float BaseInitiatePrisonBreakMtbDays =
+    //    (float)AccessTools.Field(typeof(PrisonBreakUtility), "BaseInitiatePrisonBreakMtbDays").GetValue(null);
 
-    private static readonly SimpleCurve PrisonBreakMTBFactorForDaysSincePrisonBreak = (SimpleCurve)AccessTools
-        .Field(typeof(PrisonBreakUtility), "PrisonBreakMTBFactorForDaysSincePrisonBreak").GetValue(null);
+    //private static readonly SimpleCurve PrisonBreakMTBFactorForDaysSincePrisonBreak = (SimpleCurve)AccessTools
+    //    .Field(typeof(PrisonBreakUtility), "PrisonBreakMTBFactorForDaysSincePrisonBreak").GetValue(null);
 
-    public static bool Prefix(ref float __result, Pawn pawn, StringBuilder sb, HashSet<Region> ___tmpRegions)
+    public static bool Prefix(ref float __result, Pawn pawn, StringBuilder sb, HashSet<Region> ___tmpRegions,
+        SimpleCurve ___PrisonBreakMTBFactorForDaysSincePrisonBreak)
     {
         if (!pawn.Awake())
         {
@@ -40,7 +41,7 @@ internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
             return false;
         }
 
-        var days = BaseInitiatePrisonBreakMtbDays;
+        var days = pawn.kindDef.basePrisonBreakMtbDays;
 
         var movementFactor = Mathf.Clamp(pawn.health.capacities.GetLevel(PawnCapacityDefOf.Moving), 0.01f, 1f);
         days /= movementFactor;
@@ -67,7 +68,27 @@ internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
         {
             var daysSincePrisonBreak =
                 (Find.TickManager.TicksGame - pawn.guest.lastPrisonBreakTicks) / GenDate.TicksPerDay;
-            days *= PrisonBreakMTBFactorForDaysSincePrisonBreak.Evaluate(daysSincePrisonBreak);
+            days *= ___PrisonBreakMTBFactorForDaysSincePrisonBreak.Evaluate(daysSincePrisonBreak);
+        }
+
+        if (pawn.genes != null)
+        {
+            days *= pawn.genes.PrisonBreakIntervalFactor;
+            if (sb != null && days != 1f)
+            {
+                sb.AppendLineIfNotEmpty();
+                sb.Append($"  - {"FactorForGenes".Translate()}: {days.ToStringPercent()}");
+            }
+        }
+
+        if (ModsConfig.AnomalyActive && pawn.health.hediffSet.HasHediff(HediffDefOf.BlissLobotomy))
+        {
+            days *= 10f;
+            if (sb != null)
+            {
+                sb.AppendLineIfNotEmpty();
+                sb.Append("  - " + "BlissLobotomy".Translate() + ": " + 10f.ToStringPercent());
+            }
         }
 
         __result = days;

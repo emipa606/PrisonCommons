@@ -8,7 +8,7 @@ namespace PrisonCommons;
 [HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), nameof(WorkGiver_Warden_TakeToBed.TryMakeJob))]
 internal static class WorkGiver_Warden_TakeToBed_TryMakeJob_Patch
 {
-    public static void Postfix(ref Job __result, Pawn pawn, Thing t, bool forced)
+    public static void Postfix(ref Job __result, bool forced)
     {
         if (forced || __result == null || __result.def != JobDefOf.EscortPrisonerToBed)
         {

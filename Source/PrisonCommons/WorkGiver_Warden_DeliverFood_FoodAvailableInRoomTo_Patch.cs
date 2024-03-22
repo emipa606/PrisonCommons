@@ -64,7 +64,7 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo_Patch
             {
                 if (thing is Pawn { IsPrisonerOfColony: true } pawn &&
                     pawn.needs.food.CurLevelPercentage < pawn.needs.food.PercentageThreshHungry + 0.02f &&
-                    (pawn.carryTracker.CarriedThing == null || !pawn.WillEat_NewTemp(pawn.carryTracker.CarriedThing)))
+                    (pawn.carryTracker.CarriedThing == null || !pawn.WillEat(pawn.carryTracker.CarriedThing)))
                 {
                     neededNutrition += pawn.needs.food.NutritionWanted;
                 }
