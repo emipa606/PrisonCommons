@@ -1,5 +1,8 @@
 # Changelog for PrisonCommons
 
+1.5.1 - Updated spanish translation, thanks Ferchu
+
+
 1.5.0 - Mod updated for 1.5 and passed autotests
 
 
