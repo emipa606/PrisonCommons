@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <CommandPrisonCommonsToggleLabel>Zona Común de la Prisión</CommandPrisonCommonsToggleLabel>
+  <CommandPrisonCommonsToggleDescActive>Los prisioneros pueden entrar libremente en esta habitación si comparte una puerta con su celda o con otra zona común de la prisión a la que puedan acceder.</CommandPrisonCommonsToggleDescActive>
+  <CommandPrisonCommonsToggleDescInactive>Este es un punto de encuentro normal.</CommandPrisonCommonsToggleDescInactive>
+</LanguageData>
