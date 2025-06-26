@@ -13,7 +13,7 @@ public static class PrisonCommons
 
     private static readonly HashSet<Room> matchingRooms = [];
     private static readonly HashSet<Room> seenDoors = [];
-    private static readonly Queue<Room> doorQueue = new Queue<Room>();
+    private static readonly Queue<Room> doorQueue = new();
 
     static PrisonCommons()
     {

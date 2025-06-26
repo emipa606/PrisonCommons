@@ -8,7 +8,7 @@ using Verse;
 namespace PrisonCommons;
 
 [HarmonyPatch(typeof(WorkGiver_Warden_DeliverFood), "FoodAvailableInRoomTo")]
-internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo_Patch
+internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo
 {
     public static bool Postfix(bool __result, Pawn prisoner)
     {
@@ -25,7 +25,7 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo_Patch
 
         var seenRooms = new HashSet<Room>();
         float neededNutrition = 0f, availableNutrition = 0f;
-        CountNutrition(seenRooms, prisoner, room, ref neededNutrition, ref availableNutrition);
+        countNutrition(seenRooms, prisoner, room, ref neededNutrition, ref availableNutrition);
 
         return availableNutrition + 0.5f >= neededNutrition;
     }
@@ -38,7 +38,7 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo_Patch
         throw new NotImplementedException("stub method should not be callable");
     }
 
-    private static void CountNutrition(HashSet<Room> seenRooms, Pawn prisoner, Room room, ref float neededNutrition,
+    private static void countNutrition(HashSet<Room> seenRooms, Pawn prisoner, Room room, ref float neededNutrition,
         ref float availableNutrition)
     {
         if (!seenRooms.Add(room))
@@ -82,7 +82,7 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo_Patch
 
                 foreach (var neighbor in other.Neighbors)
                 {
-                    CountNutrition(seenRooms, prisoner, neighbor.Room, ref neededNutrition, ref availableNutrition);
+                    countNutrition(seenRooms, prisoner, neighbor.Room, ref neededNutrition, ref availableNutrition);
                 }
             }
         }

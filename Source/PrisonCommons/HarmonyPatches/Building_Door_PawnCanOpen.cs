@@ -5,7 +5,7 @@ using Verse;
 namespace PrisonCommons;
 
 [HarmonyPatch(typeof(Building_Door), nameof(Building_Door.PawnCanOpen))]
-internal static class Building_Door_PawnCanOpen_Patch
+internal static class Building_Door_PawnCanOpen
 {
     public static void Postfix(ref bool __result, Building_Door __instance, Pawn p)
     {

@@ -6,7 +6,7 @@ namespace PrisonCommons;
 
 [HarmonyPatch(typeof(SocialProperness), nameof(SocialProperness.IsSociallyProper), typeof(Thing), typeof(Pawn),
     typeof(bool), typeof(bool))]
-internal static class SocialProperness_IsSociallyProper_Patch
+internal static class SocialProperness_IsSociallyProper
 {
     public static void Postfix(ref bool __result, Thing t, Pawn p, bool forPrisoner)
     {

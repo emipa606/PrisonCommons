@@ -8,25 +8,12 @@ using Verse;
 namespace PrisonCommons;
 
 [HarmonyPatch(typeof(PrisonBreakUtility), nameof(PrisonBreakUtility.InitiatePrisonBreakMtbDays))]
-internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
+internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays
 {
-    //private static readonly float BaseInitiatePrisonBreakMtbDays =
-    //    (float)AccessTools.Field(typeof(PrisonBreakUtility), "BaseInitiatePrisonBreakMtbDays").GetValue(null);
-
-    //private static readonly SimpleCurve PrisonBreakMTBFactorForDaysSincePrisonBreak = (SimpleCurve)AccessTools
-    //    .Field(typeof(PrisonBreakUtility), "PrisonBreakMTBFactorForDaysSincePrisonBreak").GetValue(null);
-
     public static bool Prefix(ref float __result, Pawn pawn, StringBuilder sb, HashSet<Region> ___tmpRegions,
         SimpleCurve ___PrisonBreakMTBFactorForDaysSincePrisonBreak)
     {
-        if (!pawn.Awake())
-        {
-            __result = -1f;
-
-            return false;
-        }
-
-        if (!PrisonBreakUtility.CanParticipateInPrisonBreak(pawn))
+        if (!pawn.Awake() || !PrisonBreakUtility.CanParticipateInPrisonBreak(pawn))
         {
             __result = -1f;
 
@@ -53,7 +40,7 @@ internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
 
         ___tmpRegions.Clear();
 
-        var doorFactor = (float)CountDoorsCombined(___tmpRegions, room);
+        var doorFactor = (float)countDoorsCombined(___tmpRegions, room);
         if (doorFactor > 0f)
         {
             days /= doorFactor;
@@ -96,7 +83,7 @@ internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
         return false;
     }
 
-    private static int CountDoorsCombined(HashSet<Region> ___tmpRegions, Room room)
+    private static int countDoorsCombined(HashSet<Region> ___tmpRegions, Room room)
     {
         var count = 0;
 
@@ -122,7 +109,7 @@ internal static class PrisonBreakUtility_InitiatePrisonBreakMtbDays_Patch
                 {
                     if (neighbor.Room.IsPrisonCell)
                     {
-                        count += CountDoorsCombined(___tmpRegions, neighbor.Room);
+                        count += countDoorsCombined(___tmpRegions, neighbor.Room);
                     }
                     else
                     {

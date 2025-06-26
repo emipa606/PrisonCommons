@@ -7,11 +7,11 @@ namespace RimWorld;
 [StaticConstructorOnStartup]
 public class CompPrisonCommons : ThingComp
 {
-    private static readonly Texture2D ForPrisonersTex = ContentFinder<Texture2D>.Get("UI/Commands/ForPrisoners");
+    private static readonly Texture2D forPrisonersTex = ContentFinder<Texture2D>.Get("UI/Commands/ForPrisoners");
 
     private bool isPrisonCommons;
 
-    public bool Active
+    private bool Active
     {
         get => isPrisonCommons;
         set
@@ -34,9 +34,9 @@ public class CompPrisonCommons : ThingComp
         Scribe_Values.Look(ref isPrisonCommons, "isPrisonCommons");
     }
 
-    public override void PostDeSpawn(Map map)
+    public override void PostDeSpawn(Map map, DestroyMode mode = DestroyMode.Vanish)
     {
-        base.PostDeSpawn(map);
+        base.PostDeSpawn(map, mode);
         if (Active)
         {
             PrisonCommons.PrisonCommons.SetPrisonCommons(this, false);
@@ -68,10 +68,10 @@ public class CompPrisonCommons : ThingComp
 
     public override IEnumerable<Gizmo> CompGetGizmosExtra()
     {
-        var command_Toggle = new Command_Toggle
+        var commandToggle = new Command_Toggle
         {
             defaultLabel = "CommandPrisonCommonsToggleLabel".Translate(),
-            icon = ForPrisonersTex,
+            icon = forPrisonersTex,
             isActive = () => Active,
             toggleAction = delegate { Active = !Active; },
             defaultDesc = Active
@@ -79,6 +79,6 @@ public class CompPrisonCommons : ThingComp
                 : "CommandPrisonCommonsToggleDescInactive".Translate()
         };
 
-        yield return command_Toggle;
+        yield return commandToggle;
     }
 }

@@ -6,7 +6,7 @@ using Verse.AI;
 namespace PrisonCommons;
 
 [HarmonyPatch(typeof(WorkGiver_Warden_TakeToBed), nameof(WorkGiver_Warden_TakeToBed.TryMakeJob))]
-internal static class WorkGiver_Warden_TakeToBed_TryMakeJob_Patch
+internal static class WorkGiver_Warden_TakeToBed_TryMakeJob
 {
     public static void Postfix(ref Job __result, bool forced)
     {
