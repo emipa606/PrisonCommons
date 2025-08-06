@@ -33,6 +33,7 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo
     [HarmonyReversePatch]
     [HarmonyPatch(typeof(WorkGiver_Warden_DeliverFood), "NutritionAvailableForFrom")]
     [MethodImpl(MethodImplOptions.NoInlining)]
+    // ReSharper disable UnusedParameter.Local
     private static float NutritionAvailableForFrom(Pawn p, Thing foodSource)
     {
         throw new NotImplementedException("stub method should not be callable");

@@ -4,6 +4,12 @@
   "CanRemove": "0",
   "PreviewVersion": "1.6",
   "SocialImageSet": true,
-  "LastXmlCleaning": "2025-06-26T21:14:52.8295131+02:00",
-  "SearchTags": " prison management"
+  "LastXmlCleaning": "2025-08-06T23:26:59.8438958+02:00",
+  "SearchTags": " prison management",
+  "Patches": true,
+  "Defs": false,
+  "Assemblies": true,
+  "LinesOfCode": 15540,
+  "LinesOfXML": 1397,
+  "CodeBaseSize": 66
 }

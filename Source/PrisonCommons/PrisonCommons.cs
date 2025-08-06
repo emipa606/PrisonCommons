@@ -82,12 +82,10 @@ public static class PrisonCommons
                 {
                     if (firstMatchingRoom is null)
                     {
-                        // matchingRooms.Count >= 1
                         firstMatchingRoom = neighborRoom;
                     }
                     else if (firstMatchingRoom != neighborRoom)
                     {
-                        // matchingRooms.Count >= 2
                         return true;
                     }
                 }
