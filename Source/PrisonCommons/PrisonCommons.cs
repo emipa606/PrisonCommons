@@ -11,10 +11,6 @@ public static class PrisonCommons
 {
     private static readonly HashSet<CompPrisonCommons> comps = [];
 
-    private static readonly HashSet<Room> matchingRooms = [];
-    private static readonly HashSet<Room> seenDoors = [];
-    private static readonly Queue<Room> doorQueue = new();
-
     static PrisonCommons()
     {
         new Harmony("Mlie.PrisonCommons").PatchAll(Assembly.GetExecutingAssembly());
@@ -70,10 +66,9 @@ public static class PrisonCommons
         var prisonerBed = p.ownership.OwnedBed;
         var prisonerBedroom = prisonerBed?.GetRoom();
 
-        matchingRooms.Clear();
-        seenDoors.Clear();
-        seenDoors.Add(room);
-        doorQueue.Clear();
+        Room firstMatchingRoom = null;
+        HashSet<Room> seenDoors = [room];
+        Queue<Room> doorQueue = new();
         doorQueue.Enqueue(room);
 
         while (doorQueue.Count != 0)
@@ -83,18 +78,26 @@ public static class PrisonCommons
             {
                 var neighborRoom = neighbor.Room;
 
-                if (neighborRoom.IsDoorway && seenDoors.Add(neighborRoom))
-                {
-                    doorQueue.Enqueue(neighborRoom);
-                }
-
                 if (neighborRoom == prisonerBedroom || IsPrisonCommons(neighborRoom))
                 {
-                    matchingRooms.Add(neighborRoom);
+                    if (firstMatchingRoom is null)
+                    {
+                        // matchingRooms.Count >= 1
+                        firstMatchingRoom = neighborRoom;
+                    }
+                    else if (firstMatchingRoom != neighborRoom)
+                    {
+                        // matchingRooms.Count >= 2
+                        return true;
+                    }
+                }
+                else if (neighborRoom.IsDoorway && seenDoors.Add(neighborRoom))
+                {
+                    doorQueue.Enqueue(neighborRoom);
                 }
             }
         }
 
-        return matchingRooms.Count >= 2;
+        return false;
     }
 }
