@@ -74,7 +74,7 @@ public static class PrisonCommons
         while (doorQueue.Count != 0)
         {
             var door = doorQueue.Dequeue();
-            foreach (var neighbor in door.Districts[0].Neighbors)
+            foreach (var neighbor in door.Districts[0].Regions[0].Neighbors)
             {
                 var neighborRoom = neighbor.Room;
 
