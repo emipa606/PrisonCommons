@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using HarmonyLib;
 using RimWorld;
 using Verse;
+using Verse.AI;
 
 namespace PrisonCommons;
 
@@ -53,8 +54,9 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo
             var things = region.ListerThings.ThingsInGroup(ThingRequestGroup.FoodSourceNotPlantOrTree);
             foreach (var thing in things)
             {
-                if (!thing.def.IsIngestible ||
-                    thing.def.ingestible.preferability > FoodPreferability.DesperateOnlyForHumanlikes)
+                if ((!thing.def.IsIngestible ||
+                     thing.def.ingestible.preferability > FoodPreferability.DesperateOnlyForHumanlikes) &&
+                    prisoner.CanReach(thing, PathEndMode.ClosestTouch, Danger.Some))
                 {
                     availableNutrition += NutritionAvailableForFrom(prisoner, thing);
                 }
@@ -63,7 +65,7 @@ internal static class WorkGiver_Warden_DeliverFood_FoodAvailableInRoomTo
             var pawns = region.ListerThings.ThingsInGroup(ThingRequestGroup.Pawn);
             foreach (var thing in pawns)
             {
-                if (thing is Pawn { IsPrisonerOfColony: true } pawn &&
+                if (thing is Pawn { IsPrisonerOfColony: true } pawn && pawn.needs.food != null &&
                     pawn.needs.food.CurLevelPercentage < pawn.needs.food.PercentageThreshHungry + 0.02f &&
                     (pawn.carryTracker.CarriedThing == null || !pawn.WillEat(pawn.carryTracker.CarriedThing)))
                 {

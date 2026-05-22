@@ -6,4 +6,13 @@
     <BuildType Name="Release" />
   </Configurations>
   <Project Path="PrisonCommons/PrisonCommons.csproj" />
+  <Folder Name="/XML/About/">
+    <File Path="../About/about.xml" />
+  </Folder>
+  <Folder Name="/XML/1.6/Patches/">
+    <File Path="../1.6/Patches/Patches.xml" />
+  </Folder>
+  <Folder Name="/XML/Languages/English/Keyed/">
+    <File Path="../Languages/English/Keyed/PrisonCommons.xml" />
+  </Folder>
 </Solution>

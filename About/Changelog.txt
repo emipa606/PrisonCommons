@@ -1,5 +1,8 @@
 # Changelog for PrisonCommons
 
+1.6.3 - Pawns should be able to deliver food to prisoners correctly
+
+
 1.6.2 - Thread saftey fix by AmCh-Q
 
 
